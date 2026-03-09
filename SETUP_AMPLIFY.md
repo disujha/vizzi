@@ -31,7 +31,7 @@ Click on your app (vizzi)
 |----------|-------|
 | `COGNITO_REGION` | `ap-south-1` |
 | `COGNITO_USER_POOL_ID` | `ap-south-1_0byWYlztF` |
-| `COGNITO_CLIENT_ID` | `1oqlon9kgthoerfqkm06iuonla` |
+| `COGNITO_CLIENT_ID` | `6r4ihia5ehfefpgc8nfmi50cdv` |
 | `BEDROCK_ACCESS_KEY_ID` | Get from `.env.local` file (AWS_ACCESS_KEY_ID value) |
 | `BEDROCK_SECRET_ACCESS_KEY` | Get from `.env.local` file (AWS_SECRET_ACCESS_KEY value) |
 | `MSG91_AUTH_KEY` | `462703A7BdGmwT2m68b928c3P1` |

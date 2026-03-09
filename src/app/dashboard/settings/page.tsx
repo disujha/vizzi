@@ -386,6 +386,20 @@ export default function SettingsPage() {
                     setHasUnsavedChanges(false);
                     return nextSettings;
                 });
+            } else {
+                // Clinic record doesn't exist in Firebase/AppSync - initialize it
+                const now = Date.now();
+                const initialClinic = {
+                    id: user.userId,
+                    name: user.username || "My Clinic",
+                    clinicName: user.username || "My Clinic",
+                    signupDate: now,
+                    currentPlan: "FREE",
+                    patientsLimit: 300,
+                    smsLimit: 50,
+                    status: "OPEN",
+                };
+                void setDoc(clinicRef, initialClinic, { merge: false });
             }
             setLoading(false);
         });
@@ -522,6 +536,8 @@ export default function SettingsPage() {
     const handleSave = async () => {
         if (!user) return;
         if (smsClinicNameError) return;
+        console.log("[Settings] Starting save - user.userId:", user.userId);
+        console.log("[Settings] Clinic name to save:", settings.clinicName);
         setSyncWarning("");
         setSaving(true);
         try {
@@ -561,15 +577,19 @@ export default function SettingsPage() {
                 queueType: settings.queueType,
                 aiEnabled: settings.aiEnabled,
             };
+            console.log("[Settings] Payload prepared:", payload);
             await setDoc(doc(db, "clinics", user.userId), payload, { merge: true });
+            console.log("[Settings] setDoc completed");
+            
             // Explicit clinic name mutation to guarantee name persistence
+            // Only update name/clinicName to avoid schema field mismatches
             try {
-                // Strip clinic- prefix to match the AppSync database ID created by the mobile app
                 const resolvedClinicId = user.userId.startsWith("clinic-") ? user.userId.replace(/^clinic-/, "") : user.userId;
                 await gqlClient.graphql({
                     query: /* GraphQL */ `mutation UpdateClinic($input: UpdateClinicInput!) { updateClinic(input: $input) { id name clinicName } }`,
                     variables: { input: { id: resolvedClinicId, name: settings.clinicName, clinicName: settings.clinicName } }
                 });
+                console.log("[Settings] Direct name mutation successful");
             } catch (nameErr) {
                 console.warn("[Settings] Name mutation fallback failed:", nameErr);
             }

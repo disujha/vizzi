@@ -185,18 +185,60 @@ export async function setDoc(ref: DocRef, data: Record<string, any>, options?: {
         setLocal(ref.path, { ...existing, ...mappedData });
     }
     if (ref.collection === "clinics" && !ref.clinicId) {
+        console.log("[DB] setDoc clinic - attempting update for ID:", ref.id);
         try {
-            await gqlCall(Q.updateClinic, { input: { id: ref.id, ...strip(mappedData, "clinic") } });
+            const updateInput = { id: ref.id, ...strip(mappedData, "clinic") };
+            console.log("[DB] Update input:", updateInput);
+            await gqlCall(Q.updateClinic, { input: updateInput });
+            console.log("[DB] Clinic update successful");
         } catch (e) {
-            if (options?.merge) {
-                if (!isUnauthorizedGraphQLError(e)) {
-                    console.warn("DB updateClinic failed:", e);
-                } else {
-                    emitLocalOnlySync("clinics");
+            console.error("[DB] updateClinic error:", e);
+            
+            // Extract error details from GraphQL error structure
+            const errors = (e as any)?.errors || [];
+            const firstError = errors[0];
+            const errorMessage = String(firstError?.message || e?.message || "").toLowerCase();
+            const errorType = String(firstError?.errorType || "").toLowerCase();
+            
+            console.log("[DB] Error details - message:", errorMessage, "type:", errorType, "full error:", JSON.stringify(e, null, 2));
+            
+            // Check if it's a "not found" error
+            const isNotFound = errorMessage.includes("not found") || 
+                              errorMessage.includes("does not exist") ||
+                              errorMessage.includes("no item found") ||
+                              errorType.includes("notfound");
+            
+            console.log("[DB] Error analysis - isNotFound:", isNotFound);
+            
+            if (isNotFound) {
+                // Record doesn't exist, try to create it
+                console.log("[DB] Attempting to create clinic record");
+                try { 
+                    const createInput = { id: ref.id, ...strip(mappedData, "clinic") };
+                    console.log("[DB] Create input:", createInput);
+                    await gqlCall(Q.createClinic, { input: createInput }); 
+                    console.log("[DB] Clinic create successful");
+                    return; // Success!
+                } catch (createErr) { 
+                    console.error("[DB] createClinic failed:", createErr); 
+                    if (isUnauthorizedGraphQLError(createErr)) {
+                        console.warn("[DB] Authorization error on create - emitting local_only");
+                        emitLocalOnlySync("clinics");
+                    }
                 }
-                return;
+            } else if (isUnauthorizedGraphQLError(e)) {
+                // Real authorization error
+                console.warn("[DB] Authorization error on update - emitting local_only");
+                emitLocalOnlySync("clinics");
+            } else {
+                console.warn("DB updateClinic failed:", e);
             }
-            try { await gqlCall(Q.createClinic, { input: { id: ref.id, ...strip(mappedData, "clinic") } }); } catch (err) { console.warn("DB setDoc failed:", err); }
+            
+            if (!options?.merge) {
+                // If not merge mode and update failed, try create as fallback
+                console.log("[DB] Non-merge mode, trying create as fallback");
+                try { await gqlCall(Q.createClinic, { input: { id: ref.id, ...strip(mappedData, "clinic") } }); } catch (err) { console.warn("DB setDoc failed:", err); }
+            }
         }
     } else if (ref.collection === "queue" || ref.collection === "patients") {
         try {

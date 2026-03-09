@@ -1,0 +1,21 @@
+# AWS Cognito Configuration
+# Add these to your .env.local file
+
+# AWS User Pool Configuration (NEW USER POOL)
+AWS_REGION=us-east-1
+AWS_USER_POOL_ID=us-east-1_H8QBG7B81
+AWS_USER_POOL_CLIENT_ID=6r4ihia5ehfefpgc8nfmi50cdv
+
+# IMPORTANT: Add your actual client secret here
+AWS_USER_POOL_CLIENT_SECRET=N7kP2mR9vX4bT1wQ8zL5jH3s
+
+# MSG91 SMS Configuration
+MSG91_AUTH_KEY=your_msg91_auth_key_here
+MSG91_TEMPLATE_ID=your_msg91_template_id_here
+MSG91_SENDER_ID=VIZZAI
+
+# AppSync Configuration (existing)
+NEXT_PUBLIC_AWS_APPSYNC_ENDPOINT=https://wbcw3zak3nfo5lhxpv2jxjqzye.appsync-api.ap-south-1.amazonaws.com/graphql
+NEXT_PUBLIC_AWS_APPSYNC_REGION=ap-south-1
+NEXT_PUBLIC_AWS_APPSYNC_AUTH_TYPE=AMAZON_COGNITO_USER_POOLS
+NEXT_PUBLIC_AWS_APPSYNC_API_KEY=da2-fpcxwzzvofc27pxphlvpjdx2za

@@ -1,0 +1,11 @@
+{
+  "name": "cognito-lambda-triggers",
+  "version": "1.0.0",
+  "type": "commonjs",
+  "description": "Cognito Custom Auth Lambda Triggers",
+  "main": "defineAuthChallengeCJS.js",
+  "dependencies": {},
+  "engines": {
+    "node": "18.x"
+  }
+}

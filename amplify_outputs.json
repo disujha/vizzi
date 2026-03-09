@@ -1,0 +1,25 @@
+{
+  "version": "1.4",
+  "auth": {
+    "aws_region": "ap-south-1",
+    "user_pool_id": "ap-south-1_0byWYlztF",
+    "user_pool_client_id": "6r4ihia5ehfefpgc8nfmi50cdv",
+    "identity_pool_id": "ap-south-1:f3bbdba1-cdd9-4e56-a120-ed574ff6e738",
+    "username_attributes": ["email", "phone_number"],
+    "mfa_configuration": "OFF",
+    "password_policy": {
+      "min_length": 8,
+      "require_lowercase": false,
+      "require_uppercase": false,
+      "require_numbers": false,
+      "require_symbols": false
+    }
+  },
+  "data": {
+    "aws_region": "ap-south-1",
+    "url": "https://wbcw3zak3nfo5lhxpv2jxjqzye.appsync-api.ap-south-1.amazonaws.com/graphql",
+    "api_key": "da2-fpcxwzzvofc27pxphlvpjdx2za",
+    "default_authorization_type": "API_KEY",
+    "authorization_types": ["AMAZON_COGNITO_USER_POOLS"]
+  }
+}

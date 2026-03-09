@@ -1,0 +1,5 @@
+{
+  "DefineAuthChallenge": "arn:aws:lambda:ap-south-1:163985745933:function:vizzi-defineAuthChallenge",
+  "CreateAuthChallenge": "arn:aws:lambda:ap-south-1:163985745933:function:vizzi-createAuthChallenge",
+  "VerifyAuthChallengeResponse": "arn:aws:lambda:ap-south-1:163985745933:function:vizzi-verifyAuthChallenge"
+}

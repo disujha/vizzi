@@ -6,9 +6,23 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { CognitoIdentityProviderClient, AdminCreateUserCommand, AdminSetUserPasswordCommand } from '@aws-sdk/client-cognito-identity-provider';
 
-const cognitoClient = new CognitoIdentityProviderClient({
+// Configure Cognito client with credentials
+const cognitoConfig: any = {
   region: process.env.COGNITO_REGION || process.env.AWS_REGION || 'ap-south-1',
-});
+};
+
+// Add credentials if available (required for AdminCreateUser and AdminSetUserPassword)
+const accessKeyId = process.env.BEDROCK_ACCESS_KEY_ID || process.env.AWS_ACCESS_KEY_ID;
+const secretAccessKey = process.env.BEDROCK_SECRET_ACCESS_KEY || process.env.AWS_SECRET_ACCESS_KEY;
+
+if (accessKeyId && secretAccessKey) {
+  cognitoConfig.credentials = {
+    accessKeyId,
+    secretAccessKey,
+  };
+}
+
+const cognitoClient = new CognitoIdentityProviderClient(cognitoConfig);
 
 const USER_POOL_ID = process.env.COGNITO_USER_POOL_ID || process.env.AWS_USER_POOL_ID || 'ap-south-1_0byWYlztF';
 

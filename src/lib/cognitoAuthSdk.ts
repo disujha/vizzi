@@ -77,12 +77,23 @@ export class CognitoCustomAuthService {
       region: COGNITO_CONFIG.region
     });
 
-    // Initialize Cognito client
-    this.client = new CognitoIdentityProviderClient({
+    // Initialize Cognito client with credentials
+    const clientConfig: any = {
       region: COGNITO_CONFIG.region,
-      // AWS credentials will be automatically loaded from environment
-      // AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_SESSION_TOKEN
-    });
+    };
+
+    // Add credentials if available (required for Cognito operations)
+    const accessKeyId = process.env.BEDROCK_ACCESS_KEY_ID || process.env.AWS_ACCESS_KEY_ID;
+    const secretAccessKey = process.env.BEDROCK_SECRET_ACCESS_KEY || process.env.AWS_SECRET_ACCESS_KEY;
+
+    if (accessKeyId && secretAccessKey) {
+      clientConfig.credentials = {
+        accessKeyId,
+        secretAccessKey,
+      };
+    }
+
+    this.client = new CognitoIdentityProviderClient(clientConfig);
   }
 
   /**

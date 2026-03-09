@@ -1,0 +1,88 @@
+enum ClinicStatus {
+  OPEN
+  EMERGENCY_ONLY
+  CLOSED
+}
+
+enum DoctorStatus {
+  AVAILABLE
+  ON_BREAK
+  BUSY
+  OFFLINE
+}
+
+type Clinic @model @auth(rules: [{allow: public, provider: apiKey, operations: [create, read, update]},
+  {allow: private, operations: [create, read, update]}])
+{
+  name: String
+  clinicName: String
+  doctorName: String
+  clinicType: String
+  email: String
+  phone: String
+  status: ClinicStatus
+  clinicLogoUri: String
+  logoUrl: String
+  doctorPhotoUri: String
+  voiceVolume: Int
+  smsClinicName: String
+  smsEnabled: Boolean
+  smsUsed: Int
+  smsLimit: Int
+  whatsappUsed: Int
+  whatsappLimit: Int
+  patientsUsed: Int
+  patientsLimit: Int
+  currentPlan: String
+  planExpiryDate: AWSDateTime
+  signupDate: AWSDateTime
+  demoStartedAt: AWSDateTime
+  tokenPrefix: String
+  tokenDigits: Int
+  startTime: String
+  endTime: String
+  breakStartTime: String
+  breakEndTime: String
+  voiceEnabled: Boolean
+  voiceLanguage: String
+  voiceRate: Float
+  voicePitch: Float
+  voiceGender: String
+  voiceName: String
+  announcementTemplate: String
+  checkInAnnouncementTemplate: String
+  checkInEnabled: Boolean
+}
+
+type Doctor @model @auth(rules: [{allow: public, provider: apiKey, operations: [create, read, update, delete]},
+  {allow: private, operations: [create, read, update, delete]}])
+{
+  clinicId: String!
+  name: String!
+  prefix: String!
+  active: Boolean
+  status: DoctorStatus
+  photoUrl: String
+  activePatientId: String
+  queuePosition: Int
+}
+
+type QueuePatient @model @auth(rules: [{allow: public, provider: apiKey, operations: [create, read, update, delete]},
+  {allow: private, operations: [create, read, update, delete]}])
+{
+  clinicId: String!
+  name: String
+  mobileNumber: String
+  tokenNumber: String
+  status: String
+  timestamp: Int
+  doctorId: String
+  doctorName: String
+  doctorPrefix: String
+  isAppointment: Boolean
+  isEmergency: Boolean
+  appointmentDate: String
+  appointmentTime: String
+  lastCalledAt: Int
+  cancelledAt: Int
+}

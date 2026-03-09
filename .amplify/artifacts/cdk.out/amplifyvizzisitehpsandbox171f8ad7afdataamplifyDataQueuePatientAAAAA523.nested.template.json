@@ -1,0 +1,2080 @@
+{
+ "Parameters": {
+  "DynamoDBModelTableReadIOPS": {
+   "Type": "Number",
+   "Default": 5,
+   "Description": "The number of read IOPS the table should support."
+  },
+  "DynamoDBModelTableWriteIOPS": {
+   "Type": "Number",
+   "Default": 5,
+   "Description": "The number of write IOPS the table should support."
+  },
+  "DynamoDBBillingMode": {
+   "Type": "String",
+   "Default": "PAY_PER_REQUEST",
+   "AllowedValues": [
+    "PAY_PER_REQUEST",
+    "PROVISIONED"
+   ],
+   "Description": "Configure @model types to create DynamoDB tables with PAY_PER_REQUEST or PROVISIONED billing modes."
+  },
+  "DynamoDBEnablePointInTimeRecovery": {
+   "Type": "String",
+   "Default": "false",
+   "AllowedValues": [
+    "true",
+    "false"
+   ],
+   "Description": "Whether to enable Point in Time Recovery on the table."
+  },
+  "DynamoDBEnableServerSideEncryption": {
+   "Type": "String",
+   "Default": "true",
+   "AllowedValues": [
+    "true",
+    "false"
+   ],
+   "Description": "Enable server side encryption powered by KMS."
+  },
+  "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataAmplifyTableManagerNestedStackAmplifyTableManagerNestedStackResourceC3A923D1Outputsamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataAmplifyTableManagerTableManagerCustomProviderf2A4AC101": {
+   "Type": "String"
+  },
+  "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPIF1D5669EApiId": {
+   "Type": "String"
+  },
+  "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPINONEDSB3BDE5BEName": {
+   "Type": "String"
+  },
+  "referencetoamplifyvizzisitehpsandbox171f8ad7afauthNestedStackauthNestedStackResourceAE1E64F1Outputsamplifyvizzisitehpsandbox171f8ad7afauthamplifyAuthauthenticatedUserRole8AC314DDRef": {
+   "Type": "String"
+  },
+  "referencetoamplifyvizzisitehpsandbox171f8ad7afauthNestedStackauthNestedStackResourceAE1E64F1Outputsamplifyvizzisitehpsandbox171f8ad7afauthamplifyAuthunauthenticatedUserRole6807216CRef": {
+   "Type": "String"
+  },
+  "referencetoamplifyvizzisitehpsandbox171f8ad7afauthNestedStackauthNestedStackResourceAE1E64F1Outputsamplifyvizzisitehpsandbox171f8ad7afauthamplifyAuthIdentityPool0F083C5CRef": {
+   "Type": "String"
+  }
+ },
+ "Conditions": {
+  "HasEnvironmentParameter": {
+   "Fn::Not": [
+    {
+     "Fn::Equals": [
+      "NONE",
+      "NONE"
+     ]
+    }
+   ]
+  },
+  "ShouldUsePayPerRequestBilling": {
+   "Fn::Equals": [
+    {
+     "Ref": "DynamoDBBillingMode"
+    },
+    "PAY_PER_REQUEST"
+   ]
+  },
+  "ShouldUsePointInTimeRecovery": {
+   "Fn::Equals": [
+    {
+     "Ref": "DynamoDBEnablePointInTimeRecovery"
+    },
+    "true"
+   ]
+  },
+  "CDKMetadataAvailable": {
+   "Fn::Or": [
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "af-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-3"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-south-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-3"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-4"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ca-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ca-west-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "cn-north-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "cn-northwest-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-central-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-north-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-south-2"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-3"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "il-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "me-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "me-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "sa-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-east-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-west-1"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Equals": [
+      {
+       "Ref": "AWS::Region"
+      },
+      "us-west-2"
+     ]
+    }
+   ]
+  }
+ },
+ "Resources": {
+  "QueuePatientTable": {
+   "Type": "Custom::AmplifyDynamoDBTable",
+   "Properties": {
+    "ServiceToken": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataAmplifyTableManagerNestedStackAmplifyTableManagerNestedStackResourceC3A923D1Outputsamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataAmplifyTableManagerTableManagerCustomProviderf2A4AC101"
+    },
+    "tableName": {
+     "Fn::Join": [
+      "",
+      [
+       "QueuePatient-",
+       {
+        "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPIF1D5669EApiId"
+       },
+       "-NONE"
+      ]
+     ]
+    },
+    "attributeDefinitions": [
+     {
+      "attributeName": "id",
+      "attributeType": "S"
+     }
+    ],
+    "keySchema": [
+     {
+      "attributeName": "id",
+      "keyType": "HASH"
+     }
+    ],
+    "provisionedThroughput": {
+     "Fn::If": [
+      "ShouldUsePayPerRequestBilling",
+      {
+       "Ref": "AWS::NoValue"
+      },
+      {
+       "ReadCapacityUnits": {
+        "Ref": "DynamoDBModelTableReadIOPS"
+       },
+       "WriteCapacityUnits": {
+        "Ref": "DynamoDBModelTableWriteIOPS"
+       }
+      }
+     ]
+    },
+    "sseSpecification": {
+     "sseEnabled": false
+    },
+    "streamSpecification": {
+     "streamViewType": "NEW_AND_OLD_IMAGES"
+    },
+    "deletionProtectionEnabled": false,
+    "allowDestructiveGraphqlSchemaUpdates": true,
+    "replaceTableUponGsiUpdate": true,
+    "pointInTimeRecoverySpecification": {
+     "Fn::If": [
+      "ShouldUsePointInTimeRecovery",
+      {
+       "PointInTimeRecoveryEnabled": true
+      },
+      {
+       "Ref": "AWS::NoValue"
+      }
+     ]
+    },
+    "billingMode": {
+     "Fn::If": [
+      "ShouldUsePayPerRequestBilling",
+      "PAY_PER_REQUEST",
+      {
+       "Ref": "AWS::NoValue"
+      }
+     ]
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-vizzisite-hp-sandbox-171f8ad7af/data/amplifyData/QueuePatient/QueuePatientTable/Default/Default"
+   }
+  },
+  "QueuePatientIAMRole40FD6CA2": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "appsync.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Policies": [
+     {
+      "PolicyDocument": {
+       "Statement": [
+        {
+         "Action": [
+          "dynamodb:BatchGetItem",
+          "dynamodb:BatchWriteItem",
+          "dynamodb:PutItem",
+          "dynamodb:DeleteItem",
+          "dynamodb:GetItem",
+          "dynamodb:Scan",
+          "dynamodb:Query",
+          "dynamodb:UpdateItem",
+          "dynamodb:ConditionCheckItem",
+          "dynamodb:DescribeTable",
+          "dynamodb:GetRecords",
+          "dynamodb:GetShardIterator"
+         ],
+         "Effect": "Allow",
+         "Resource": [
+          {
+           "Fn::Sub": [
+            "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${tablename}",
+            {
+             "tablename": {
+              "Fn::Join": [
+               "",
+               [
+                "QueuePatient-",
+                {
+                 "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPIF1D5669EApiId"
+                },
+                "-NONE"
+               ]
+              ]
+             }
+            }
+           ]
+          },
+          {
+           "Fn::Sub": [
+            "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${tablename}/*",
+            {
+             "tablename": {
+              "Fn::Join": [
+               "",
+               [
+                "QueuePatient-",
+                {
+                 "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPIF1D5669EApiId"
+                },
+                "-NONE"
+               ]
+              ]
+             }
+            }
+           ]
+          }
+         ]
+        }
+       ],
+       "Version": "2012-10-17"
+      },
+      "PolicyName": "DynamoDBAccess"
+     }
+    ],
+    "RoleName": {
+     "Fn::Join": [
+      "",
+      [
+       "QueuePatientIAMRole9aa490-",
+       {
+        "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPIF1D5669EApiId"
+       },
+       "-NONE"
+      ]
+     ]
+    },
+    "Tags": [
+     {
+      "Key": "amplify:deployment-type",
+      "Value": "sandbox"
+     },
+     {
+      "Key": "amplify:friendly-name",
+      "Value": "amplifyData"
+     },
+     {
+      "Key": "created-by",
+      "Value": "amplify"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-vizzisite-hp-sandbox-171f8ad7af/data/amplifyData/QueuePatient/QueuePatientIAMRole/Resource"
+   }
+  },
+  "QueuePatientDataSource": {
+   "Type": "AWS::AppSync::DataSource",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPIF1D5669EApiId"
+    },
+    "DynamoDBConfig": {
+     "AwsRegion": {
+      "Ref": "AWS::Region"
+     },
+     "TableName": {
+      "Fn::Select": [
+       1,
+       {
+        "Fn::Split": [
+         "/",
+         {
+          "Fn::Select": [
+           5,
+           {
+            "Fn::Split": [
+             ":",
+             {
+              "Fn::GetAtt": [
+               "QueuePatientTable",
+               "TableArn"
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    },
+    "Name": "QueuePatientTable",
+    "ServiceRoleArn": {
+     "Fn::GetAtt": [
+      "QueuePatientIAMRole40FD6CA2",
+      "Arn"
+     ]
+    },
+    "Type": "AMAZON_DYNAMODB"
+   },
+   "DependsOn": [
+    "QueuePatientIAMRole40FD6CA2"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-vizzisite-hp-sandbox-171f8ad7af/data/amplifyData/QueuePatient/QueuePatientDataSource/Resource"
+   }
+  },
+  "QuerygetQueuePatientauth0FunctionQuerygetQueuePatientauth0FunctionAppSyncFunction78C51181": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPIF1D5669EApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPINONEDSB3BDE5BEName"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QuerygetQueuePatientauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c198324ea51bbec9cebb98ea3502cd4efb8cea55edece7e137710efb94ab930b.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-vizzisite-hp-sandbox-171f8ad7af/data/amplifyData/QueuePatient/QuerygetQueuePatientauth0Function/QuerygetQueuePatientauth0Function.AppSyncFunction"
+   }
+  },
+  "QuerygetQueuePatientpostAuth0FunctionQuerygetQueuePatientpostAuth0FunctionAppSyncFunctionC2E696EE": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPIF1D5669EApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPINONEDSB3BDE5BEName"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QuerygetQueuePatientpostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-vizzisite-hp-sandbox-171f8ad7af/data/amplifyData/QueuePatient/QuerygetQueuePatientpostAuth0Function/QuerygetQueuePatientpostAuth0Function.AppSyncFunction"
+   }
+  },
+  "QueryGetQueuePatientDataResolverFnQueryGetQueuePatientDataResolverFnAppSyncFunctionF0CE1CFC": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPIF1D5669EApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "QueuePatientDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QueryGetQueuePatientDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/08f4d557693d96c1a4efba0f9dc91330e4b19772fd5477c156468843e3d9cb5e.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/4c6a2d29f01c6091bd1d9afe16e5849d456c96f17c3b215938c8067399532719.vtl"
+    }
+   },
+   "DependsOn": [
+    "QueuePatientDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-vizzisite-hp-sandbox-171f8ad7af/data/amplifyData/QueuePatient/QueryGetQueuePatientDataResolverFn/QueryGetQueuePatientDataResolverFn.AppSyncFunction"
+   }
+  },
+  "GetQueuePatientResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPIF1D5669EApiId"
+    },
+    "FieldName": "getQueuePatient",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "QuerygetQueuePatientauth0FunctionQuerygetQueuePatientauth0FunctionAppSyncFunction78C51181",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "QuerygetQueuePatientpostAuth0FunctionQuerygetQueuePatientpostAuth0FunctionAppSyncFunctionC2E696EE",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "QueryGetQueuePatientDataResolverFnQueryGetQueuePatientDataResolverFnAppSyncFunctionF0CE1CFC",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Query\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"getQueuePatient\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPIF1D5669EApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n$util.qr($ctx.stash.put(\"tableName\", \"",
+       {
+        "Fn::Select": [
+         1,
+         {
+          "Fn::Split": [
+           "/",
+           {
+            "Fn::Select": [
+             5,
+             {
+              "Fn::Split": [
+               ":",
+               {
+                "Fn::GetAtt": [
+                 "QueuePatientTable",
+                 "TableArn"
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afauthNestedStackauthNestedStackResourceAE1E64F1Outputsamplifyvizzisitehpsandbox171f8ad7afauthamplifyAuthauthenticatedUserRole8AC314DDRef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afauthNestedStackauthNestedStackResourceAE1E64F1Outputsamplifyvizzisitehpsandbox171f8ad7afauthamplifyAuthunauthenticatedUserRole6807216CRef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afauthNestedStackauthNestedStackResourceAE1E64F1Outputsamplifyvizzisitehpsandbox171f8ad7afauthamplifyAuthIdentityPool0F083C5CRef"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Query"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-vizzisite-hp-sandbox-171f8ad7af/data/amplifyData/QueuePatient/queryGetQueuePatientResolver"
+   }
+  },
+  "QuerylistQueuePatientsauth0FunctionQuerylistQueuePatientsauth0FunctionAppSyncFunction69102151": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPIF1D5669EApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPINONEDSB3BDE5BEName"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QuerylistQueuePatientsauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c198324ea51bbec9cebb98ea3502cd4efb8cea55edece7e137710efb94ab930b.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-vizzisite-hp-sandbox-171f8ad7af/data/amplifyData/QueuePatient/QuerylistQueuePatientsauth0Function/QuerylistQueuePatientsauth0Function.AppSyncFunction"
+   }
+  },
+  "QuerylistQueuePatientspostAuth0FunctionQuerylistQueuePatientspostAuth0FunctionAppSyncFunction1913148A": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPIF1D5669EApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPINONEDSB3BDE5BEName"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QuerylistQueuePatientspostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-vizzisite-hp-sandbox-171f8ad7af/data/amplifyData/QueuePatient/QuerylistQueuePatientspostAuth0Function/QuerylistQueuePatientspostAuth0Function.AppSyncFunction"
+   }
+  },
+  "QueryListQueuePatientsDataResolverFnQueryListQueuePatientsDataResolverFnAppSyncFunction403D93FD": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPIF1D5669EApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "QueuePatientDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QueryListQueuePatientsDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/9fcbe070ecd3023c5bf5b966fa9584757db9762eef123bad0820bd87591b2174.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/cc01911d0269d4080ea57505dc445dfc315ef7ad85d3d9d4ea1357858bff451d.vtl"
+    }
+   },
+   "DependsOn": [
+    "QueuePatientDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-vizzisite-hp-sandbox-171f8ad7af/data/amplifyData/QueuePatient/QueryListQueuePatientsDataResolverFn/QueryListQueuePatientsDataResolverFn.AppSyncFunction"
+   }
+  },
+  "ListQueuePatientResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPIF1D5669EApiId"
+    },
+    "FieldName": "listQueuePatients",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "QuerylistQueuePatientsauth0FunctionQuerylistQueuePatientsauth0FunctionAppSyncFunction69102151",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "QuerylistQueuePatientspostAuth0FunctionQuerylistQueuePatientspostAuth0FunctionAppSyncFunction1913148A",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "QueryListQueuePatientsDataResolverFnQueryListQueuePatientsDataResolverFnAppSyncFunction403D93FD",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Query\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"listQueuePatients\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPIF1D5669EApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n$util.qr($ctx.stash.put(\"tableName\", \"",
+       {
+        "Fn::Select": [
+         1,
+         {
+          "Fn::Split": [
+           "/",
+           {
+            "Fn::Select": [
+             5,
+             {
+              "Fn::Split": [
+               ":",
+               {
+                "Fn::GetAtt": [
+                 "QueuePatientTable",
+                 "TableArn"
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afauthNestedStackauthNestedStackResourceAE1E64F1Outputsamplifyvizzisitehpsandbox171f8ad7afauthamplifyAuthauthenticatedUserRole8AC314DDRef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afauthNestedStackauthNestedStackResourceAE1E64F1Outputsamplifyvizzisitehpsandbox171f8ad7afauthamplifyAuthunauthenticatedUserRole6807216CRef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afauthNestedStackauthNestedStackResourceAE1E64F1Outputsamplifyvizzisitehpsandbox171f8ad7afauthamplifyAuthIdentityPool0F083C5CRef"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Query"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-vizzisite-hp-sandbox-171f8ad7af/data/amplifyData/QueuePatient/queryListQueuePatientsResolver"
+   }
+  },
+  "MutationcreateQueuePatientinit0FunctionMutationcreateQueuePatientinit0FunctionAppSyncFunctionAD885268": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPIF1D5669EApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPINONEDSB3BDE5BEName"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationcreateQueuePatientinit0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/a183ddccbd956316c38ef97177b8f088ef0826f62023323f5ae6053d348ccffc.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-vizzisite-hp-sandbox-171f8ad7af/data/amplifyData/QueuePatient/MutationcreateQueuePatientinit0Function/MutationcreateQueuePatientinit0Function.AppSyncFunction"
+   }
+  },
+  "MutationcreateQueuePatientauth0FunctionMutationcreateQueuePatientauth0FunctionAppSyncFunction21D48B33": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPIF1D5669EApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPINONEDSB3BDE5BEName"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationcreateQueuePatientauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/13358b36bef4868cbdc0a39d73a7bd8e921b77cc06a5fea6dad940706fc98ced.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-vizzisite-hp-sandbox-171f8ad7af/data/amplifyData/QueuePatient/MutationcreateQueuePatientauth0Function/MutationcreateQueuePatientauth0Function.AppSyncFunction"
+   }
+  },
+  "MutationcreateQueuePatientpostAuth0FunctionMutationcreateQueuePatientpostAuth0FunctionAppSyncFunction855C1E86": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPIF1D5669EApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPINONEDSB3BDE5BEName"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationcreateQueuePatientpostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-vizzisite-hp-sandbox-171f8ad7af/data/amplifyData/QueuePatient/MutationcreateQueuePatientpostAuth0Function/MutationcreateQueuePatientpostAuth0Function.AppSyncFunction"
+   }
+  },
+  "MutationCreateQueuePatientDataResolverFnMutationCreateQueuePatientDataResolverFnAppSyncFunctionC89C2DDA": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPIF1D5669EApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "QueuePatientDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationCreateQueuePatientDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/73cf73f49fa204b6cf388a8cbb1bfb2f767ee98cf9e139cb32652d3aba71122e.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/f4a52b72209a9dfa197b5e7367a5c378c5bb86de6e29ddd9e48b49a3fe54b249.vtl"
+    }
+   },
+   "DependsOn": [
+    "QueuePatientDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-vizzisite-hp-sandbox-171f8ad7af/data/amplifyData/QueuePatient/MutationCreateQueuePatientDataResolverFn/MutationCreateQueuePatientDataResolverFn.AppSyncFunction"
+   }
+  },
+  "CreateQueuePatientResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPIF1D5669EApiId"
+    },
+    "FieldName": "createQueuePatient",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "MutationcreateQueuePatientinit0FunctionMutationcreateQueuePatientinit0FunctionAppSyncFunctionAD885268",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationcreateQueuePatientauth0FunctionMutationcreateQueuePatientauth0FunctionAppSyncFunction21D48B33",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationcreateQueuePatientpostAuth0FunctionMutationcreateQueuePatientpostAuth0FunctionAppSyncFunction855C1E86",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationCreateQueuePatientDataResolverFnMutationCreateQueuePatientDataResolverFnAppSyncFunctionC89C2DDA",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Mutation\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"createQueuePatient\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPIF1D5669EApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n$util.qr($ctx.stash.put(\"tableName\", \"",
+       {
+        "Fn::Select": [
+         1,
+         {
+          "Fn::Split": [
+           "/",
+           {
+            "Fn::Select": [
+             5,
+             {
+              "Fn::Split": [
+               ":",
+               {
+                "Fn::GetAtt": [
+                 "QueuePatientTable",
+                 "TableArn"
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afauthNestedStackauthNestedStackResourceAE1E64F1Outputsamplifyvizzisitehpsandbox171f8ad7afauthamplifyAuthauthenticatedUserRole8AC314DDRef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afauthNestedStackauthNestedStackResourceAE1E64F1Outputsamplifyvizzisitehpsandbox171f8ad7afauthamplifyAuthunauthenticatedUserRole6807216CRef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afauthNestedStackauthNestedStackResourceAE1E64F1Outputsamplifyvizzisitehpsandbox171f8ad7afauthamplifyAuthIdentityPool0F083C5CRef"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Mutation"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-vizzisite-hp-sandbox-171f8ad7af/data/amplifyData/QueuePatient/mutationCreateQueuePatientResolver"
+   }
+  },
+  "MutationupdateQueuePatientinit0FunctionMutationupdateQueuePatientinit0FunctionAppSyncFunction9DFDB2F5": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPIF1D5669EApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPINONEDSB3BDE5BEName"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationupdateQueuePatientinit0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/06db846fd14e6fc371f22b12b5545ba8e2dbfeda85d8c8d586c71c282166657b.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-vizzisite-hp-sandbox-171f8ad7af/data/amplifyData/QueuePatient/MutationupdateQueuePatientinit0Function/MutationupdateQueuePatientinit0Function.AppSyncFunction"
+   }
+  },
+  "MutationupdateQueuePatientauth0FunctionMutationupdateQueuePatientauth0FunctionAppSyncFunctionA7D7A692": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPIF1D5669EApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "QueuePatientDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationupdateQueuePatientauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/1f5fed297da9c32ae3af922bf3a38ccf23b956078887d16891ec06c20c64722c.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/f7fc6438a7dc3ba253976da4e682a79a9d2aff30ce5e553d228901ed70d9e7b0.vtl"
+    }
+   },
+   "DependsOn": [
+    "QueuePatientDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-vizzisite-hp-sandbox-171f8ad7af/data/amplifyData/QueuePatient/MutationupdateQueuePatientauth0Function/MutationupdateQueuePatientauth0Function.AppSyncFunction"
+   }
+  },
+  "MutationupdateQueuePatientpostAuth0FunctionMutationupdateQueuePatientpostAuth0FunctionAppSyncFunctionE86EB086": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPIF1D5669EApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPINONEDSB3BDE5BEName"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationupdateQueuePatientpostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-vizzisite-hp-sandbox-171f8ad7af/data/amplifyData/QueuePatient/MutationupdateQueuePatientpostAuth0Function/MutationupdateQueuePatientpostAuth0Function.AppSyncFunction"
+   }
+  },
+  "MutationUpdateQueuePatientDataResolverFnMutationUpdateQueuePatientDataResolverFnAppSyncFunction7B13B174": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPIF1D5669EApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "QueuePatientDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationUpdateQueuePatientDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/474bf0776ec2164a13191d1a0a9e057154931e4918fea5086f49850d02a5371b.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/f4a52b72209a9dfa197b5e7367a5c378c5bb86de6e29ddd9e48b49a3fe54b249.vtl"
+    }
+   },
+   "DependsOn": [
+    "QueuePatientDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-vizzisite-hp-sandbox-171f8ad7af/data/amplifyData/QueuePatient/MutationUpdateQueuePatientDataResolverFn/MutationUpdateQueuePatientDataResolverFn.AppSyncFunction"
+   }
+  },
+  "UpdateQueuePatientResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPIF1D5669EApiId"
+    },
+    "FieldName": "updateQueuePatient",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "MutationupdateQueuePatientinit0FunctionMutationupdateQueuePatientinit0FunctionAppSyncFunction9DFDB2F5",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationupdateQueuePatientauth0FunctionMutationupdateQueuePatientauth0FunctionAppSyncFunctionA7D7A692",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationupdateQueuePatientpostAuth0FunctionMutationupdateQueuePatientpostAuth0FunctionAppSyncFunctionE86EB086",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationUpdateQueuePatientDataResolverFnMutationUpdateQueuePatientDataResolverFnAppSyncFunction7B13B174",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Mutation\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"updateQueuePatient\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPIF1D5669EApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n$util.qr($ctx.stash.put(\"tableName\", \"",
+       {
+        "Fn::Select": [
+         1,
+         {
+          "Fn::Split": [
+           "/",
+           {
+            "Fn::Select": [
+             5,
+             {
+              "Fn::Split": [
+               ":",
+               {
+                "Fn::GetAtt": [
+                 "QueuePatientTable",
+                 "TableArn"
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afauthNestedStackauthNestedStackResourceAE1E64F1Outputsamplifyvizzisitehpsandbox171f8ad7afauthamplifyAuthauthenticatedUserRole8AC314DDRef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afauthNestedStackauthNestedStackResourceAE1E64F1Outputsamplifyvizzisitehpsandbox171f8ad7afauthamplifyAuthunauthenticatedUserRole6807216CRef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afauthNestedStackauthNestedStackResourceAE1E64F1Outputsamplifyvizzisitehpsandbox171f8ad7afauthamplifyAuthIdentityPool0F083C5CRef"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Mutation"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-vizzisite-hp-sandbox-171f8ad7af/data/amplifyData/QueuePatient/mutationUpdateQueuePatientResolver"
+   }
+  },
+  "MutationdeleteQueuePatientauth0FunctionMutationdeleteQueuePatientauth0FunctionAppSyncFunction65E8BFC6": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPIF1D5669EApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "QueuePatientDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationdeleteQueuePatientauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/1f5fed297da9c32ae3af922bf3a38ccf23b956078887d16891ec06c20c64722c.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/2eb662c96443f037258baf77a6b5a1d6ef4ade2ef9edb4619d4a697bc49b265a.vtl"
+    }
+   },
+   "DependsOn": [
+    "QueuePatientDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-vizzisite-hp-sandbox-171f8ad7af/data/amplifyData/QueuePatient/MutationdeleteQueuePatientauth0Function/MutationdeleteQueuePatientauth0Function.AppSyncFunction"
+   }
+  },
+  "MutationdeleteQueuePatientpostAuth0FunctionMutationdeleteQueuePatientpostAuth0FunctionAppSyncFunction2D15718B": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPIF1D5669EApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPINONEDSB3BDE5BEName"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationdeleteQueuePatientpostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-vizzisite-hp-sandbox-171f8ad7af/data/amplifyData/QueuePatient/MutationdeleteQueuePatientpostAuth0Function/MutationdeleteQueuePatientpostAuth0Function.AppSyncFunction"
+   }
+  },
+  "MutationDeleteQueuePatientDataResolverFnMutationDeleteQueuePatientDataResolverFnAppSyncFunctionF8480163": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPIF1D5669EApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "QueuePatientDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationDeleteQueuePatientDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/4f7907d1209a2c9953a0c053df402c634e359546d70c7cc5c2e8e21ea734880f.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/f4a52b72209a9dfa197b5e7367a5c378c5bb86de6e29ddd9e48b49a3fe54b249.vtl"
+    }
+   },
+   "DependsOn": [
+    "QueuePatientDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-vizzisite-hp-sandbox-171f8ad7af/data/amplifyData/QueuePatient/MutationDeleteQueuePatientDataResolverFn/MutationDeleteQueuePatientDataResolverFn.AppSyncFunction"
+   }
+  },
+  "DeleteQueuePatientResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPIF1D5669EApiId"
+    },
+    "FieldName": "deleteQueuePatient",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "MutationdeleteQueuePatientauth0FunctionMutationdeleteQueuePatientauth0FunctionAppSyncFunction65E8BFC6",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationdeleteQueuePatientpostAuth0FunctionMutationdeleteQueuePatientpostAuth0FunctionAppSyncFunction2D15718B",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationDeleteQueuePatientDataResolverFnMutationDeleteQueuePatientDataResolverFnAppSyncFunctionF8480163",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Mutation\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"deleteQueuePatient\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPIF1D5669EApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n$util.qr($ctx.stash.put(\"tableName\", \"",
+       {
+        "Fn::Select": [
+         1,
+         {
+          "Fn::Split": [
+           "/",
+           {
+            "Fn::Select": [
+             5,
+             {
+              "Fn::Split": [
+               ":",
+               {
+                "Fn::GetAtt": [
+                 "QueuePatientTable",
+                 "TableArn"
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afauthNestedStackauthNestedStackResourceAE1E64F1Outputsamplifyvizzisitehpsandbox171f8ad7afauthamplifyAuthauthenticatedUserRole8AC314DDRef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afauthNestedStackauthNestedStackResourceAE1E64F1Outputsamplifyvizzisitehpsandbox171f8ad7afauthamplifyAuthunauthenticatedUserRole6807216CRef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afauthNestedStackauthNestedStackResourceAE1E64F1Outputsamplifyvizzisitehpsandbox171f8ad7afauthamplifyAuthIdentityPool0F083C5CRef"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Mutation"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-vizzisite-hp-sandbox-171f8ad7af/data/amplifyData/QueuePatient/mutationDeleteQueuePatientResolver"
+   }
+  },
+  "SubscriptiononCreateQueuePatientauth0FunctionSubscriptiononCreateQueuePatientauth0FunctionAppSyncFunction858051D5": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPIF1D5669EApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPINONEDSB3BDE5BEName"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptiononCreateQueuePatientauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/1d1fc1ddf435f301f89c9d0239d1040afb5fa61ba26cd289c29b8349f558e43d.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-vizzisite-hp-sandbox-171f8ad7af/data/amplifyData/QueuePatient/SubscriptiononCreateQueuePatientauth0Function/SubscriptiononCreateQueuePatientauth0Function.AppSyncFunction"
+   }
+  },
+  "SubscriptiononCreateQueuePatientpostAuth0FunctionSubscriptiononCreateQueuePatientpostAuth0FunctionAppSyncFunction9C1EE98F": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPIF1D5669EApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPINONEDSB3BDE5BEName"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptiononCreateQueuePatientpostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-vizzisite-hp-sandbox-171f8ad7af/data/amplifyData/QueuePatient/SubscriptiononCreateQueuePatientpostAuth0Function/SubscriptiononCreateQueuePatientpostAuth0Function.AppSyncFunction"
+   }
+  },
+  "SubscriptionOnCreateQueuePatientDataResolverFnSubscriptionOnCreateQueuePatientDataResolverFnAppSyncFunctionEA3B0E98": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPIF1D5669EApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPINONEDSB3BDE5BEName"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptionOnCreateQueuePatientDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/fe3c43ada4b9d681a5e2312663ef7a73386424d73b73e51f8e2e9d4b50f7c502.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/e0cff47fb007f0bbf2a4e43ca256d6aa7ec109821769fd79fa7c5e83f0e7f9fc.vtl"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-vizzisite-hp-sandbox-171f8ad7af/data/amplifyData/QueuePatient/SubscriptionOnCreateQueuePatientDataResolverFn/SubscriptionOnCreateQueuePatientDataResolverFn.AppSyncFunction"
+   }
+  },
+  "SubscriptiononCreateQueuePatientResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPIF1D5669EApiId"
+    },
+    "FieldName": "onCreateQueuePatient",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "SubscriptiononCreateQueuePatientauth0FunctionSubscriptiononCreateQueuePatientauth0FunctionAppSyncFunction858051D5",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "SubscriptiononCreateQueuePatientpostAuth0FunctionSubscriptiononCreateQueuePatientpostAuth0FunctionAppSyncFunction9C1EE98F",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "SubscriptionOnCreateQueuePatientDataResolverFnSubscriptionOnCreateQueuePatientDataResolverFnAppSyncFunctionEA3B0E98",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Subscription\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"onCreateQueuePatient\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPIF1D5669EApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afauthNestedStackauthNestedStackResourceAE1E64F1Outputsamplifyvizzisitehpsandbox171f8ad7afauthamplifyAuthauthenticatedUserRole8AC314DDRef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afauthNestedStackauthNestedStackResourceAE1E64F1Outputsamplifyvizzisitehpsandbox171f8ad7afauthamplifyAuthunauthenticatedUserRole6807216CRef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afauthNestedStackauthNestedStackResourceAE1E64F1Outputsamplifyvizzisitehpsandbox171f8ad7afauthamplifyAuthIdentityPool0F083C5CRef"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Subscription"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-vizzisite-hp-sandbox-171f8ad7af/data/amplifyData/QueuePatient/subscriptionOnCreateQueuePatientResolver"
+   }
+  },
+  "SubscriptiononUpdateQueuePatientauth0FunctionSubscriptiononUpdateQueuePatientauth0FunctionAppSyncFunctionF4868CFC": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPIF1D5669EApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPINONEDSB3BDE5BEName"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptiononUpdateQueuePatientauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/1d1fc1ddf435f301f89c9d0239d1040afb5fa61ba26cd289c29b8349f558e43d.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-vizzisite-hp-sandbox-171f8ad7af/data/amplifyData/QueuePatient/SubscriptiononUpdateQueuePatientauth0Function/SubscriptiononUpdateQueuePatientauth0Function.AppSyncFunction"
+   }
+  },
+  "SubscriptiononUpdateQueuePatientpostAuth0FunctionSubscriptiononUpdateQueuePatientpostAuth0FunctionAppSyncFunction264926D9": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPIF1D5669EApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPINONEDSB3BDE5BEName"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptiononUpdateQueuePatientpostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-vizzisite-hp-sandbox-171f8ad7af/data/amplifyData/QueuePatient/SubscriptiononUpdateQueuePatientpostAuth0Function/SubscriptiononUpdateQueuePatientpostAuth0Function.AppSyncFunction"
+   }
+  },
+  "SubscriptionOnUpdateQueuePatientDataResolverFnSubscriptionOnUpdateQueuePatientDataResolverFnAppSyncFunction54F3A7A0": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPIF1D5669EApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPINONEDSB3BDE5BEName"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptionOnUpdateQueuePatientDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/fe3c43ada4b9d681a5e2312663ef7a73386424d73b73e51f8e2e9d4b50f7c502.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/e0cff47fb007f0bbf2a4e43ca256d6aa7ec109821769fd79fa7c5e83f0e7f9fc.vtl"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-vizzisite-hp-sandbox-171f8ad7af/data/amplifyData/QueuePatient/SubscriptionOnUpdateQueuePatientDataResolverFn/SubscriptionOnUpdateQueuePatientDataResolverFn.AppSyncFunction"
+   }
+  },
+  "SubscriptiononUpdateQueuePatientResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPIF1D5669EApiId"
+    },
+    "FieldName": "onUpdateQueuePatient",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "SubscriptiononUpdateQueuePatientauth0FunctionSubscriptiononUpdateQueuePatientauth0FunctionAppSyncFunctionF4868CFC",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "SubscriptiononUpdateQueuePatientpostAuth0FunctionSubscriptiononUpdateQueuePatientpostAuth0FunctionAppSyncFunction264926D9",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "SubscriptionOnUpdateQueuePatientDataResolverFnSubscriptionOnUpdateQueuePatientDataResolverFnAppSyncFunction54F3A7A0",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Subscription\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"onUpdateQueuePatient\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPIF1D5669EApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afauthNestedStackauthNestedStackResourceAE1E64F1Outputsamplifyvizzisitehpsandbox171f8ad7afauthamplifyAuthauthenticatedUserRole8AC314DDRef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afauthNestedStackauthNestedStackResourceAE1E64F1Outputsamplifyvizzisitehpsandbox171f8ad7afauthamplifyAuthunauthenticatedUserRole6807216CRef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afauthNestedStackauthNestedStackResourceAE1E64F1Outputsamplifyvizzisitehpsandbox171f8ad7afauthamplifyAuthIdentityPool0F083C5CRef"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Subscription"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-vizzisite-hp-sandbox-171f8ad7af/data/amplifyData/QueuePatient/subscriptionOnUpdateQueuePatientResolver"
+   }
+  },
+  "SubscriptiononDeleteQueuePatientauth0FunctionSubscriptiononDeleteQueuePatientauth0FunctionAppSyncFunction7444B464": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPIF1D5669EApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPINONEDSB3BDE5BEName"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptiononDeleteQueuePatientauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/1d1fc1ddf435f301f89c9d0239d1040afb5fa61ba26cd289c29b8349f558e43d.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-vizzisite-hp-sandbox-171f8ad7af/data/amplifyData/QueuePatient/SubscriptiononDeleteQueuePatientauth0Function/SubscriptiononDeleteQueuePatientauth0Function.AppSyncFunction"
+   }
+  },
+  "SubscriptiononDeleteQueuePatientpostAuth0FunctionSubscriptiononDeleteQueuePatientpostAuth0FunctionAppSyncFunctionD3391E41": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPIF1D5669EApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPINONEDSB3BDE5BEName"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptiononDeleteQueuePatientpostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-vizzisite-hp-sandbox-171f8ad7af/data/amplifyData/QueuePatient/SubscriptiononDeleteQueuePatientpostAuth0Function/SubscriptiononDeleteQueuePatientpostAuth0Function.AppSyncFunction"
+   }
+  },
+  "SubscriptionOnDeleteQueuePatientDataResolverFnSubscriptionOnDeleteQueuePatientDataResolverFnAppSyncFunction130E9A00": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPIF1D5669EApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPINONEDSB3BDE5BEName"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptionOnDeleteQueuePatientDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/fe3c43ada4b9d681a5e2312663ef7a73386424d73b73e51f8e2e9d4b50f7c502.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/e0cff47fb007f0bbf2a4e43ca256d6aa7ec109821769fd79fa7c5e83f0e7f9fc.vtl"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-vizzisite-hp-sandbox-171f8ad7af/data/amplifyData/QueuePatient/SubscriptionOnDeleteQueuePatientDataResolverFn/SubscriptionOnDeleteQueuePatientDataResolverFn.AppSyncFunction"
+   }
+  },
+  "SubscriptiononDeleteQueuePatientResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPIF1D5669EApiId"
+    },
+    "FieldName": "onDeleteQueuePatient",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "SubscriptiononDeleteQueuePatientauth0FunctionSubscriptiononDeleteQueuePatientauth0FunctionAppSyncFunction7444B464",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "SubscriptiononDeleteQueuePatientpostAuth0FunctionSubscriptiononDeleteQueuePatientpostAuth0FunctionAppSyncFunctionD3391E41",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "SubscriptionOnDeleteQueuePatientDataResolverFnSubscriptionOnDeleteQueuePatientDataResolverFnAppSyncFunction130E9A00",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Subscription\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"onDeleteQueuePatient\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPIF1D5669EApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afauthNestedStackauthNestedStackResourceAE1E64F1Outputsamplifyvizzisitehpsandbox171f8ad7afauthamplifyAuthauthenticatedUserRole8AC314DDRef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afauthNestedStackauthNestedStackResourceAE1E64F1Outputsamplifyvizzisitehpsandbox171f8ad7afauthamplifyAuthunauthenticatedUserRole6807216CRef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afauthNestedStackauthNestedStackResourceAE1E64F1Outputsamplifyvizzisitehpsandbox171f8ad7afauthamplifyAuthIdentityPool0F083C5CRef"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Subscription"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-vizzisite-hp-sandbox-171f8ad7af/data/amplifyData/QueuePatient/subscriptionOnDeleteQueuePatientResolver"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/1WOQW6DQAxFz5L9xA2kF2hAXbYVdB+ZGYMmgAeNPYkixN0rSJWqq+8nP9k/h/w1g8MOb7K3rt8PvoH5g0TJ1Yq2N0XLXxhxJKW4QhHYefWBTUUSUrRkiiQaxj9s+TnjTc6zuzOOwTXwjc1AJxQyHkeYqzA87DDQYnCa5M4W5nLTy6ZExfp58j+9J7ZriSJw67sUcWv0+3m4UlyMHM8oQirwtoaRI5yS7UnXAsvqfiadkpptXSt2nrvFcHAEF3m55gfIMsh2F/F+HxOrHwmqR/4Ao3fE/jYBAAA="
+   },
+   "Metadata": {
+    "aws:cdk:path": "amplify-vizzisite-hp-sandbox-171f8ad7af/data/amplifyData/QueuePatient/CDKMetadata/Default"
+   },
+   "Condition": "CDKMetadataAvailable"
+  }
+ },
+ "Outputs": {
+  "GetAttQueuePatientTableStreamArn": {
+   "Description": "Your DynamoDB table StreamArn.",
+   "Value": {
+    "Fn::GetAtt": [
+     "QueuePatientTable",
+     "TableStreamArn"
+    ]
+   },
+   "Export": {
+    "Name": {
+     "Fn::Join": [
+      ":",
+      [
+       {
+        "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPIF1D5669EApiId"
+       },
+       "GetAtt:QueuePatientTable:StreamArn"
+      ]
+     ]
+    }
+   }
+  },
+  "GetAttQueuePatientTableName": {
+   "Description": "Your DynamoDB table name.",
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      "QueuePatient-",
+      {
+       "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPIF1D5669EApiId"
+      },
+      "-NONE"
+     ]
+    ]
+   },
+   "Export": {
+    "Name": {
+     "Fn::Join": [
+      ":",
+      [
+       {
+        "Ref": "referencetoamplifyvizzisitehpsandbox171f8ad7afdataamplifyDataGraphQLAPIF1D5669EApiId"
+       },
+       "GetAtt:QueuePatientTable:Name"
+      ]
+     ]
+    }
+   }
+  }
+ }
+}

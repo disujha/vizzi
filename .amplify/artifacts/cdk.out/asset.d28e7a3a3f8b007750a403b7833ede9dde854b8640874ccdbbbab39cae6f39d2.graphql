@@ -1,0 +1,720 @@
+enum ClinicStatus {
+  OPEN
+  EMERGENCY_ONLY
+  CLOSED
+}
+
+enum DoctorStatus {
+  AVAILABLE
+  ON_BREAK
+  BUSY
+  OFFLINE
+}
+
+type Clinic @aws_iam @aws_cognito_user_pools @aws_api_key {
+  name: String
+  clinicName: String
+  doctorName: String
+  clinicType: String
+  email: String
+  phone: String
+  status: ClinicStatus
+  clinicLogoUri: String
+  logoUrl: String
+  doctorPhotoUri: String
+  voiceVolume: Int
+  smsClinicName: String
+  smsEnabled: Boolean
+  smsUsed: Int
+  smsLimit: Int
+  whatsappUsed: Int
+  whatsappLimit: Int
+  patientsUsed: Int
+  patientsLimit: Int
+  currentPlan: String
+  planExpiryDate: AWSDateTime
+  signupDate: AWSDateTime
+  demoStartedAt: AWSDateTime
+  tokenPrefix: String
+  tokenDigits: Int
+  startTime: String
+  endTime: String
+  breakStartTime: String
+  breakEndTime: String
+  voiceEnabled: Boolean
+  voiceLanguage: String
+  voiceRate: Float
+  voicePitch: Float
+  voiceGender: String
+  voiceName: String
+  announcementTemplate: String
+  checkInAnnouncementTemplate: String
+  checkInEnabled: Boolean
+  id: ID!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type Doctor @aws_iam @aws_cognito_user_pools @aws_api_key {
+  clinicId: String!
+  name: String!
+  prefix: String!
+  active: Boolean
+  status: DoctorStatus
+  photoUrl: String
+  activePatientId: String
+  queuePosition: Int
+  id: ID!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type QueuePatient @aws_iam @aws_cognito_user_pools @aws_api_key {
+  clinicId: String!
+  name: String
+  mobileNumber: String
+  tokenNumber: String
+  status: String
+  timestamp: Int
+  doctorId: String
+  doctorName: String
+  doctorPrefix: String
+  isAppointment: Boolean
+  isEmergency: Boolean
+  appointmentDate: String
+  appointmentTime: String
+  lastCalledAt: Int
+  cancelledAt: Int
+  id: ID!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+input AmplifyAIConversationTurnErrorInput {
+  errorType: String!
+  message: String!
+}
+
+input ModelStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelBooleanInput {
+  ne: Boolean
+  eq: Boolean
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelSubscriptionStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  in: [String]
+  notIn: [String]
+}
+
+input ModelSubscriptionIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  in: [Int]
+  notIn: [Int]
+}
+
+input ModelSubscriptionFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  in: [Float]
+  notIn: [Float]
+}
+
+input ModelSubscriptionBooleanInput {
+  ne: Boolean
+  eq: Boolean
+}
+
+input ModelSubscriptionIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  in: [ID]
+  notIn: [ID]
+}
+
+enum ModelAttributeTypes {
+  binary
+  binarySet
+  bool
+  list
+  map
+  number
+  numberSet
+  string
+  stringSet
+  _null
+}
+
+input ModelSizeInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+type ModelClinicConnection @aws_api_key @aws_iam @aws_cognito_user_pools {
+  items: [Clinic]!
+  nextToken: String
+}
+
+input ModelClinicStatusInput {
+  eq: ClinicStatus
+  ne: ClinicStatus
+}
+
+input ModelClinicFilterInput {
+  name: ModelStringInput
+  clinicName: ModelStringInput
+  doctorName: ModelStringInput
+  clinicType: ModelStringInput
+  email: ModelStringInput
+  phone: ModelStringInput
+  status: ModelClinicStatusInput
+  clinicLogoUri: ModelStringInput
+  logoUrl: ModelStringInput
+  doctorPhotoUri: ModelStringInput
+  voiceVolume: ModelIntInput
+  smsClinicName: ModelStringInput
+  smsEnabled: ModelBooleanInput
+  smsUsed: ModelIntInput
+  smsLimit: ModelIntInput
+  whatsappUsed: ModelIntInput
+  whatsappLimit: ModelIntInput
+  patientsUsed: ModelIntInput
+  patientsLimit: ModelIntInput
+  currentPlan: ModelStringInput
+  planExpiryDate: ModelStringInput
+  signupDate: ModelStringInput
+  demoStartedAt: ModelStringInput
+  tokenPrefix: ModelStringInput
+  tokenDigits: ModelIntInput
+  startTime: ModelStringInput
+  endTime: ModelStringInput
+  breakStartTime: ModelStringInput
+  breakEndTime: ModelStringInput
+  voiceEnabled: ModelBooleanInput
+  voiceLanguage: ModelStringInput
+  voiceRate: ModelFloatInput
+  voicePitch: ModelFloatInput
+  voiceGender: ModelStringInput
+  voiceName: ModelStringInput
+  announcementTemplate: ModelStringInput
+  checkInAnnouncementTemplate: ModelStringInput
+  checkInEnabled: ModelBooleanInput
+  id: ModelIDInput
+  createdAt: ModelStringInput
+  updatedAt: ModelStringInput
+  and: [ModelClinicFilterInput]
+  or: [ModelClinicFilterInput]
+  not: ModelClinicFilterInput
+}
+
+type Query {
+  getClinic(id: ID!): Clinic @aws_api_key @aws_iam @aws_cognito_user_pools
+  listClinics(filter: ModelClinicFilterInput, limit: Int, nextToken: String): ModelClinicConnection @aws_api_key @aws_iam @aws_cognito_user_pools
+  getDoctor(id: ID!): Doctor @aws_api_key @aws_iam @aws_cognito_user_pools
+  listDoctors(filter: ModelDoctorFilterInput, limit: Int, nextToken: String): ModelDoctorConnection @aws_api_key @aws_iam @aws_cognito_user_pools
+  getQueuePatient(id: ID!): QueuePatient @aws_api_key @aws_iam @aws_cognito_user_pools
+  listQueuePatients(filter: ModelQueuePatientFilterInput, limit: Int, nextToken: String): ModelQueuePatientConnection @aws_api_key @aws_iam @aws_cognito_user_pools
+}
+
+input ModelClinicConditionInput {
+  name: ModelStringInput
+  clinicName: ModelStringInput
+  doctorName: ModelStringInput
+  clinicType: ModelStringInput
+  email: ModelStringInput
+  phone: ModelStringInput
+  status: ModelClinicStatusInput
+  clinicLogoUri: ModelStringInput
+  logoUrl: ModelStringInput
+  doctorPhotoUri: ModelStringInput
+  voiceVolume: ModelIntInput
+  smsClinicName: ModelStringInput
+  smsEnabled: ModelBooleanInput
+  smsUsed: ModelIntInput
+  smsLimit: ModelIntInput
+  whatsappUsed: ModelIntInput
+  whatsappLimit: ModelIntInput
+  patientsUsed: ModelIntInput
+  patientsLimit: ModelIntInput
+  currentPlan: ModelStringInput
+  planExpiryDate: ModelStringInput
+  signupDate: ModelStringInput
+  demoStartedAt: ModelStringInput
+  tokenPrefix: ModelStringInput
+  tokenDigits: ModelIntInput
+  startTime: ModelStringInput
+  endTime: ModelStringInput
+  breakStartTime: ModelStringInput
+  breakEndTime: ModelStringInput
+  voiceEnabled: ModelBooleanInput
+  voiceLanguage: ModelStringInput
+  voiceRate: ModelFloatInput
+  voicePitch: ModelFloatInput
+  voiceGender: ModelStringInput
+  voiceName: ModelStringInput
+  announcementTemplate: ModelStringInput
+  checkInAnnouncementTemplate: ModelStringInput
+  checkInEnabled: ModelBooleanInput
+  and: [ModelClinicConditionInput]
+  or: [ModelClinicConditionInput]
+  not: ModelClinicConditionInput
+  createdAt: ModelStringInput
+  updatedAt: ModelStringInput
+}
+
+input CreateClinicInput {
+  name: String
+  clinicName: String
+  doctorName: String
+  clinicType: String
+  email: String
+  phone: String
+  status: ClinicStatus
+  clinicLogoUri: String
+  logoUrl: String
+  doctorPhotoUri: String
+  voiceVolume: Int
+  smsClinicName: String
+  smsEnabled: Boolean
+  smsUsed: Int
+  smsLimit: Int
+  whatsappUsed: Int
+  whatsappLimit: Int
+  patientsUsed: Int
+  patientsLimit: Int
+  currentPlan: String
+  planExpiryDate: AWSDateTime
+  signupDate: AWSDateTime
+  demoStartedAt: AWSDateTime
+  tokenPrefix: String
+  tokenDigits: Int
+  startTime: String
+  endTime: String
+  breakStartTime: String
+  breakEndTime: String
+  voiceEnabled: Boolean
+  voiceLanguage: String
+  voiceRate: Float
+  voicePitch: Float
+  voiceGender: String
+  voiceName: String
+  announcementTemplate: String
+  checkInAnnouncementTemplate: String
+  checkInEnabled: Boolean
+  id: ID
+}
+
+input UpdateClinicInput {
+  name: String
+  clinicName: String
+  doctorName: String
+  clinicType: String
+  email: String
+  phone: String
+  status: ClinicStatus
+  clinicLogoUri: String
+  logoUrl: String
+  doctorPhotoUri: String
+  voiceVolume: Int
+  smsClinicName: String
+  smsEnabled: Boolean
+  smsUsed: Int
+  smsLimit: Int
+  whatsappUsed: Int
+  whatsappLimit: Int
+  patientsUsed: Int
+  patientsLimit: Int
+  currentPlan: String
+  planExpiryDate: AWSDateTime
+  signupDate: AWSDateTime
+  demoStartedAt: AWSDateTime
+  tokenPrefix: String
+  tokenDigits: Int
+  startTime: String
+  endTime: String
+  breakStartTime: String
+  breakEndTime: String
+  voiceEnabled: Boolean
+  voiceLanguage: String
+  voiceRate: Float
+  voicePitch: Float
+  voiceGender: String
+  voiceName: String
+  announcementTemplate: String
+  checkInAnnouncementTemplate: String
+  checkInEnabled: Boolean
+  id: ID!
+}
+
+input DeleteClinicInput {
+  id: ID!
+}
+
+type Mutation {
+  createClinic(input: CreateClinicInput!, condition: ModelClinicConditionInput): Clinic @aws_api_key @aws_iam @aws_cognito_user_pools
+  updateClinic(input: UpdateClinicInput!, condition: ModelClinicConditionInput): Clinic @aws_api_key @aws_iam @aws_cognito_user_pools
+  deleteClinic(input: DeleteClinicInput!, condition: ModelClinicConditionInput): Clinic @aws_api_key @aws_iam
+  createDoctor(input: CreateDoctorInput!, condition: ModelDoctorConditionInput): Doctor @aws_api_key @aws_iam @aws_cognito_user_pools
+  updateDoctor(input: UpdateDoctorInput!, condition: ModelDoctorConditionInput): Doctor @aws_api_key @aws_iam @aws_cognito_user_pools
+  deleteDoctor(input: DeleteDoctorInput!, condition: ModelDoctorConditionInput): Doctor @aws_api_key @aws_iam @aws_cognito_user_pools
+  createQueuePatient(input: CreateQueuePatientInput!, condition: ModelQueuePatientConditionInput): QueuePatient @aws_api_key @aws_iam @aws_cognito_user_pools
+  updateQueuePatient(input: UpdateQueuePatientInput!, condition: ModelQueuePatientConditionInput): QueuePatient @aws_api_key @aws_iam @aws_cognito_user_pools
+  deleteQueuePatient(input: DeleteQueuePatientInput!, condition: ModelQueuePatientConditionInput): QueuePatient @aws_api_key @aws_iam @aws_cognito_user_pools
+}
+
+input ModelSubscriptionClinicFilterInput {
+  name: ModelSubscriptionStringInput
+  clinicName: ModelSubscriptionStringInput
+  doctorName: ModelSubscriptionStringInput
+  clinicType: ModelSubscriptionStringInput
+  email: ModelSubscriptionStringInput
+  phone: ModelSubscriptionStringInput
+  status: ModelSubscriptionStringInput
+  clinicLogoUri: ModelSubscriptionStringInput
+  logoUrl: ModelSubscriptionStringInput
+  doctorPhotoUri: ModelSubscriptionStringInput
+  voiceVolume: ModelSubscriptionIntInput
+  smsClinicName: ModelSubscriptionStringInput
+  smsEnabled: ModelSubscriptionBooleanInput
+  smsUsed: ModelSubscriptionIntInput
+  smsLimit: ModelSubscriptionIntInput
+  whatsappUsed: ModelSubscriptionIntInput
+  whatsappLimit: ModelSubscriptionIntInput
+  patientsUsed: ModelSubscriptionIntInput
+  patientsLimit: ModelSubscriptionIntInput
+  currentPlan: ModelSubscriptionStringInput
+  planExpiryDate: ModelSubscriptionStringInput
+  signupDate: ModelSubscriptionStringInput
+  demoStartedAt: ModelSubscriptionStringInput
+  tokenPrefix: ModelSubscriptionStringInput
+  tokenDigits: ModelSubscriptionIntInput
+  startTime: ModelSubscriptionStringInput
+  endTime: ModelSubscriptionStringInput
+  breakStartTime: ModelSubscriptionStringInput
+  breakEndTime: ModelSubscriptionStringInput
+  voiceEnabled: ModelSubscriptionBooleanInput
+  voiceLanguage: ModelSubscriptionStringInput
+  voiceRate: ModelSubscriptionFloatInput
+  voicePitch: ModelSubscriptionFloatInput
+  voiceGender: ModelSubscriptionStringInput
+  voiceName: ModelSubscriptionStringInput
+  announcementTemplate: ModelSubscriptionStringInput
+  checkInAnnouncementTemplate: ModelSubscriptionStringInput
+  checkInEnabled: ModelSubscriptionBooleanInput
+  id: ModelSubscriptionIDInput
+  createdAt: ModelSubscriptionStringInput
+  updatedAt: ModelSubscriptionStringInput
+  and: [ModelSubscriptionClinicFilterInput]
+  or: [ModelSubscriptionClinicFilterInput]
+}
+
+type Subscription {
+  onCreateClinic(filter: ModelSubscriptionClinicFilterInput): Clinic @aws_subscribe(mutations: ["createClinic"]) @aws_api_key @aws_iam @aws_cognito_user_pools
+  onUpdateClinic(filter: ModelSubscriptionClinicFilterInput): Clinic @aws_subscribe(mutations: ["updateClinic"]) @aws_api_key @aws_iam @aws_cognito_user_pools
+  onDeleteClinic(filter: ModelSubscriptionClinicFilterInput): Clinic @aws_subscribe(mutations: ["deleteClinic"]) @aws_api_key @aws_iam @aws_cognito_user_pools
+  onCreateDoctor(filter: ModelSubscriptionDoctorFilterInput): Doctor @aws_subscribe(mutations: ["createDoctor"]) @aws_api_key @aws_iam @aws_cognito_user_pools
+  onUpdateDoctor(filter: ModelSubscriptionDoctorFilterInput): Doctor @aws_subscribe(mutations: ["updateDoctor"]) @aws_api_key @aws_iam @aws_cognito_user_pools
+  onDeleteDoctor(filter: ModelSubscriptionDoctorFilterInput): Doctor @aws_subscribe(mutations: ["deleteDoctor"]) @aws_api_key @aws_iam @aws_cognito_user_pools
+  onCreateQueuePatient(filter: ModelSubscriptionQueuePatientFilterInput): QueuePatient @aws_subscribe(mutations: ["createQueuePatient"]) @aws_api_key @aws_iam @aws_cognito_user_pools
+  onUpdateQueuePatient(filter: ModelSubscriptionQueuePatientFilterInput): QueuePatient @aws_subscribe(mutations: ["updateQueuePatient"]) @aws_api_key @aws_iam @aws_cognito_user_pools
+  onDeleteQueuePatient(filter: ModelSubscriptionQueuePatientFilterInput): QueuePatient @aws_subscribe(mutations: ["deleteQueuePatient"]) @aws_api_key @aws_iam @aws_cognito_user_pools
+}
+
+type ModelDoctorConnection @aws_api_key @aws_iam @aws_cognito_user_pools {
+  items: [Doctor]!
+  nextToken: String
+}
+
+input ModelDoctorStatusInput {
+  eq: DoctorStatus
+  ne: DoctorStatus
+}
+
+input ModelDoctorFilterInput {
+  clinicId: ModelStringInput
+  name: ModelStringInput
+  prefix: ModelStringInput
+  active: ModelBooleanInput
+  status: ModelDoctorStatusInput
+  photoUrl: ModelStringInput
+  activePatientId: ModelStringInput
+  queuePosition: ModelIntInput
+  id: ModelIDInput
+  createdAt: ModelStringInput
+  updatedAt: ModelStringInput
+  and: [ModelDoctorFilterInput]
+  or: [ModelDoctorFilterInput]
+  not: ModelDoctorFilterInput
+}
+
+input ModelDoctorConditionInput {
+  clinicId: ModelStringInput
+  name: ModelStringInput
+  prefix: ModelStringInput
+  active: ModelBooleanInput
+  status: ModelDoctorStatusInput
+  photoUrl: ModelStringInput
+  activePatientId: ModelStringInput
+  queuePosition: ModelIntInput
+  and: [ModelDoctorConditionInput]
+  or: [ModelDoctorConditionInput]
+  not: ModelDoctorConditionInput
+  createdAt: ModelStringInput
+  updatedAt: ModelStringInput
+}
+
+input CreateDoctorInput {
+  clinicId: String!
+  name: String!
+  prefix: String!
+  active: Boolean
+  status: DoctorStatus
+  photoUrl: String
+  activePatientId: String
+  queuePosition: Int
+  id: ID
+}
+
+input UpdateDoctorInput {
+  clinicId: String
+  name: String
+  prefix: String
+  active: Boolean
+  status: DoctorStatus
+  photoUrl: String
+  activePatientId: String
+  queuePosition: Int
+  id: ID!
+}
+
+input DeleteDoctorInput {
+  id: ID!
+}
+
+input ModelSubscriptionDoctorFilterInput {
+  clinicId: ModelSubscriptionStringInput
+  name: ModelSubscriptionStringInput
+  prefix: ModelSubscriptionStringInput
+  active: ModelSubscriptionBooleanInput
+  status: ModelSubscriptionStringInput
+  photoUrl: ModelSubscriptionStringInput
+  activePatientId: ModelSubscriptionStringInput
+  queuePosition: ModelSubscriptionIntInput
+  id: ModelSubscriptionIDInput
+  createdAt: ModelSubscriptionStringInput
+  updatedAt: ModelSubscriptionStringInput
+  and: [ModelSubscriptionDoctorFilterInput]
+  or: [ModelSubscriptionDoctorFilterInput]
+}
+
+type ModelQueuePatientConnection @aws_api_key @aws_iam @aws_cognito_user_pools {
+  items: [QueuePatient]!
+  nextToken: String
+}
+
+input ModelQueuePatientFilterInput {
+  clinicId: ModelStringInput
+  name: ModelStringInput
+  mobileNumber: ModelStringInput
+  tokenNumber: ModelStringInput
+  status: ModelStringInput
+  timestamp: ModelIntInput
+  doctorId: ModelStringInput
+  doctorName: ModelStringInput
+  doctorPrefix: ModelStringInput
+  isAppointment: ModelBooleanInput
+  isEmergency: ModelBooleanInput
+  appointmentDate: ModelStringInput
+  appointmentTime: ModelStringInput
+  lastCalledAt: ModelIntInput
+  cancelledAt: ModelIntInput
+  id: ModelIDInput
+  createdAt: ModelStringInput
+  updatedAt: ModelStringInput
+  and: [ModelQueuePatientFilterInput]
+  or: [ModelQueuePatientFilterInput]
+  not: ModelQueuePatientFilterInput
+}
+
+input ModelQueuePatientConditionInput {
+  clinicId: ModelStringInput
+  name: ModelStringInput
+  mobileNumber: ModelStringInput
+  tokenNumber: ModelStringInput
+  status: ModelStringInput
+  timestamp: ModelIntInput
+  doctorId: ModelStringInput
+  doctorName: ModelStringInput
+  doctorPrefix: ModelStringInput
+  isAppointment: ModelBooleanInput
+  isEmergency: ModelBooleanInput
+  appointmentDate: ModelStringInput
+  appointmentTime: ModelStringInput
+  lastCalledAt: ModelIntInput
+  cancelledAt: ModelIntInput
+  and: [ModelQueuePatientConditionInput]
+  or: [ModelQueuePatientConditionInput]
+  not: ModelQueuePatientConditionInput
+  createdAt: ModelStringInput
+  updatedAt: ModelStringInput
+}
+
+input CreateQueuePatientInput {
+  clinicId: String!
+  name: String
+  mobileNumber: String
+  tokenNumber: String
+  status: String
+  timestamp: Int
+  doctorId: String
+  doctorName: String
+  doctorPrefix: String
+  isAppointment: Boolean
+  isEmergency: Boolean
+  appointmentDate: String
+  appointmentTime: String
+  lastCalledAt: Int
+  cancelledAt: Int
+  id: ID
+}
+
+input UpdateQueuePatientInput {
+  clinicId: String
+  name: String
+  mobileNumber: String
+  tokenNumber: String
+  status: String
+  timestamp: Int
+  doctorId: String
+  doctorName: String
+  doctorPrefix: String
+  isAppointment: Boolean
+  isEmergency: Boolean
+  appointmentDate: String
+  appointmentTime: String
+  lastCalledAt: Int
+  cancelledAt: Int
+  id: ID!
+}
+
+input DeleteQueuePatientInput {
+  id: ID!
+}
+
+input ModelSubscriptionQueuePatientFilterInput {
+  clinicId: ModelSubscriptionStringInput
+  name: ModelSubscriptionStringInput
+  mobileNumber: ModelSubscriptionStringInput
+  tokenNumber: ModelSubscriptionStringInput
+  status: ModelSubscriptionStringInput
+  timestamp: ModelSubscriptionIntInput
+  doctorId: ModelSubscriptionStringInput
+  doctorName: ModelSubscriptionStringInput
+  doctorPrefix: ModelSubscriptionStringInput
+  isAppointment: ModelSubscriptionBooleanInput
+  isEmergency: ModelSubscriptionBooleanInput
+  appointmentDate: ModelSubscriptionStringInput
+  appointmentTime: ModelSubscriptionStringInput
+  lastCalledAt: ModelSubscriptionIntInput
+  cancelledAt: ModelSubscriptionIntInput
+  id: ModelSubscriptionIDInput
+  createdAt: ModelSubscriptionStringInput
+  updatedAt: ModelSubscriptionStringInput
+  and: [ModelSubscriptionQueuePatientFilterInput]
+  or: [ModelSubscriptionQueuePatientFilterInput]
+}

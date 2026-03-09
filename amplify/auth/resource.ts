@@ -1,8 +1,8 @@
 import { defineAuth } from '@aws-amplify/backend';
 
-// Auth resource configured for phone number authentication
+// Basic auth resource. Adjust login methods as needed.
 export const auth = defineAuth({
   loginWith: {
-    phone: true,
+    email: true,
   },
 });

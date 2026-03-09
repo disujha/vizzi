@@ -11,7 +11,7 @@ import crypto from "crypto";
 const COGNITO_CONFIG = {
   region: process.env.COGNITO_REGION || process.env.AWS_REGION || 'ap-south-1',
   userPoolId: process.env.COGNITO_USER_POOL_ID || process.env.AWS_USER_POOL_ID || 'ap-south-1_0byWYlztF',
-  clientId: process.env.COGNITO_CLIENT_ID || process.env.AWS_USER_POOL_CLIENT_ID || '1oqlon9kgt0erfqkm06iuonla',
+  clientId: process.env.COGNITO_CLIENT_ID || process.env.AWS_USER_POOL_CLIENT_ID || '1oqlon9kgthoerfqkm06iuonla',
   clientSecret: process.env.COGNITO_CLIENT_SECRET || process.env.AWS_USER_POOL_CLIENT_SECRET || '', // Must be set in environment
 };
 

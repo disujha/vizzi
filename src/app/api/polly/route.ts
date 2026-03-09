@@ -1,14 +1,19 @@
 import { NextRequest, NextResponse } from "next/server";
 import { PollyClient, SynthesizeSpeechCommand } from "@aws-sdk/client-polly";
 
+// Polly configuration
+// Note: Using POLLY_ prefix to avoid AWS Amplify's reserved "AWS_" prefix restriction
 const pollyConfig: ConstructorParameters<typeof PollyClient>[0] = {
-    region: process.env.AWS_REGION || "ap-south-1",
+    region: process.env.POLLY_REGION || process.env.AWS_REGION || "ap-south-1",
 };
 
-if (process.env.AWS_ACCESS_KEY_ID && process.env.AWS_SECRET_ACCESS_KEY) {
+const accessKeyId = process.env.POLLY_ACCESS_KEY_ID || process.env.AWS_ACCESS_KEY_ID;
+const secretAccessKey = process.env.POLLY_SECRET_ACCESS_KEY || process.env.AWS_SECRET_ACCESS_KEY;
+
+if (accessKeyId && secretAccessKey) {
     pollyConfig.credentials = {
-        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+        accessKeyId,
+        secretAccessKey,
     };
 }
 

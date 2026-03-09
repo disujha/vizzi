@@ -7,10 +7,10 @@ import { NextRequest, NextResponse } from 'next/server';
 import { CognitoIdentityProviderClient, AdminCreateUserCommand, AdminSetUserPasswordCommand } from '@aws-sdk/client-cognito-identity-provider';
 
 const cognitoClient = new CognitoIdentityProviderClient({
-  region: process.env.AWS_REGION || 'ap-south-1',
+  region: process.env.COGNITO_REGION || process.env.AWS_REGION || 'ap-south-1',
 });
 
-const USER_POOL_ID = process.env.AWS_USER_POOL_ID || 'ap-south-1_0byWYlztF';
+const USER_POOL_ID = process.env.COGNITO_USER_POOL_ID || process.env.AWS_USER_POOL_ID || 'ap-south-1_0byWYlztF';
 
 export async function POST(request: NextRequest) {
   try {

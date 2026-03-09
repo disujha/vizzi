@@ -30,13 +30,15 @@ You need to add the following environment variables to your AWS Amplify deployme
 
 Click **Add variable** for each of the following:
 
+**Note**: AWS Amplify restricts environment variables starting with "AWS_" prefix. We use alternative prefixes (COGNITO_, BEDROCK_) that the application code supports as fallbacks.
+
 | Variable Name | Value | Description |
 |---------------|-------|-------------|
-| `AWS_REGION` | `ap-south-1` | AWS region for Cognito |
-| `AWS_USER_POOL_ID` | `ap-south-1_0byWYlztF` | Cognito User Pool ID |
-| `AWS_USER_POOL_CLIENT_ID` | `1oqlon9kgthoerfqkm06iuonla` | Cognito App Client ID |
-| `AWS_ACCESS_KEY_ID` | `[YOUR_AWS_ACCESS_KEY]` | AWS Access Key (from .env.local) |
-| `AWS_SECRET_ACCESS_KEY` | `[YOUR_AWS_SECRET_KEY]` | AWS Secret Key (from .env.local) |
+| `COGNITO_REGION` | `ap-south-1` | AWS region for Cognito |
+| `COGNITO_USER_POOL_ID` | `ap-south-1_0byWYlztF` | Cognito User Pool ID |
+| `COGNITO_CLIENT_ID` | `1oqlon9kgthoerfqkm06iuonla` | Cognito App Client ID |
+| `BEDROCK_ACCESS_KEY_ID` | `[YOUR_AWS_ACCESS_KEY]` | AWS Access Key (from .env.local) |
+| `BEDROCK_SECRET_ACCESS_KEY` | `[YOUR_AWS_SECRET_KEY]` | AWS Secret Key (from .env.local) |
 | `MSG91_AUTH_KEY` | `462703A7BdGmwT2m68b928c3P1` | MSG91 API Key for SMS |
 | `MSG91_TEMPLATE_OTP` | `69aa30f6f17f92c8ae010052` | MSG91 OTP Template ID |
 
@@ -178,11 +180,11 @@ aws amplify update-app \
   --app-id YOUR_APP_ID \
   --region ap-south-1 \
   --environment-variables \
-    AWS_REGION=ap-south-1,\
-    AWS_USER_POOL_ID=ap-south-1_0byWYlztF,\
-    AWS_USER_POOL_CLIENT_ID=1oqlon9kgthoerfqkm06iuonla,\
-    AWS_ACCESS_KEY_ID=[YOUR_AWS_ACCESS_KEY],\
-    AWS_SECRET_ACCESS_KEY=[YOUR_AWS_SECRET_KEY],\
+    COGNITO_REGION=ap-south-1,\
+    COGNITO_USER_POOL_ID=ap-south-1_0byWYlztF,\
+    COGNITO_CLIENT_ID=1oqlon9kgthoerfqkm06iuonla,\
+    BEDROCK_ACCESS_KEY_ID=[YOUR_AWS_ACCESS_KEY],\
+    BEDROCK_SECRET_ACCESS_KEY=[YOUR_AWS_SECRET_KEY],\
     MSG91_AUTH_KEY=462703A7BdGmwT2m68b928c3P1,\
     MSG91_TEMPLATE_OTP=69aa30f6f17f92c8ae010052
 

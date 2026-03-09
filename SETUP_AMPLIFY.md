@@ -25,13 +25,15 @@ Click on your app (vizzi)
 - Click **Manage variables**
 - Add these 7 variables:
 
+**Note**: AWS Amplify doesn't allow environment variables starting with "AWS_" prefix. We use alternative prefixes that the code supports.
+
 | Variable | Value |
 |----------|-------|
-| `AWS_REGION` | `ap-south-1` |
-| `AWS_USER_POOL_ID` | `ap-south-1_0byWYlztF` |
-| `AWS_USER_POOL_CLIENT_ID` | `1oqlon9kgthoerfqkm06iuonla` |
-| `AWS_ACCESS_KEY_ID` | Get from `.env.local` file |
-| `AWS_SECRET_ACCESS_KEY` | Get from `.env.local` file |
+| `COGNITO_REGION` | `ap-south-1` |
+| `COGNITO_USER_POOL_ID` | `ap-south-1_0byWYlztF` |
+| `COGNITO_CLIENT_ID` | `1oqlon9kgthoerfqkm06iuonla` |
+| `BEDROCK_ACCESS_KEY_ID` | Get from `.env.local` file (AWS_ACCESS_KEY_ID value) |
+| `BEDROCK_SECRET_ACCESS_KEY` | Get from `.env.local` file (AWS_SECRET_ACCESS_KEY value) |
 | `MSG91_AUTH_KEY` | `462703A7BdGmwT2m68b928c3P1` |
 | `MSG91_TEMPLATE_OTP` | `69aa30f6f17f92c8ae010052` |
 

@@ -1,13 +1,18 @@
 import { BedrockRuntimeClient, InvokeModelCommand } from "@aws-sdk/client-bedrock-runtime";
 
+// Bedrock configuration
+// Note: Using BEDROCK_ prefix to avoid AWS Amplify's reserved "AWS_" prefix restriction
 const bedrockConfig: ConstructorParameters<typeof BedrockRuntimeClient>[0] = {
-    region: process.env.AWS_REGION || "ap-south-1",
+    region: process.env.BEDROCK_REGION || process.env.AWS_REGION || "ap-south-1",
 };
 
-if (process.env.AWS_ACCESS_KEY_ID && process.env.AWS_SECRET_ACCESS_KEY) {
+const accessKeyId = process.env.BEDROCK_ACCESS_KEY_ID || process.env.AWS_ACCESS_KEY_ID;
+const secretAccessKey = process.env.BEDROCK_SECRET_ACCESS_KEY || process.env.AWS_SECRET_ACCESS_KEY;
+
+if (accessKeyId && secretAccessKey) {
     bedrockConfig.credentials = {
-        accessKeyId: process.env.AWS_ACCESS_KEY_ID || "",
-        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY || "",
+        accessKeyId,
+        secretAccessKey,
     };
 }
 

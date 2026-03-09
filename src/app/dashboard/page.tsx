@@ -213,19 +213,19 @@ export default function ImprovedDashboardPage() {
                 <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4 flex items-center justify-between gap-4">
                     <div className="flex items-center gap-3">
                         <div className="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center">
-                            <UserX size={20} />
+                            <UserX size={20} className="text-amber-700" />
                         </div>
                         <div>
                             <h3 className="text-sm font-black text-amber-900 uppercase">Setup Required: No Doctors Added</h3>
                             <p className="text-xs text-amber-700 mt-1">Each doctor can have their own token prefix and schedule.</p>
-                            <button
-                                onClick={createTestDoctorForTesting}
-                                className="mt-2 px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition text-sm font-medium"
-                            >
-                                Create Test Doctor
-                            </button>
                         </div>
                     </div>
+                    <Link
+                        href="/dashboard/settings?tab=doctors&openAddDoctor=1"
+                        className="px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition text-sm font-medium whitespace-nowrap"
+                    >
+                        Add Doctor
+                    </Link>
                 </div>
             )}
 

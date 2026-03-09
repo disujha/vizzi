@@ -4,6 +4,14 @@ frontend:
     preBuild:
       commands:
         - npm ci
+        - echo "Environment variables check:"
+        - echo "COGNITO_REGION=$COGNITO_REGION"
+        - echo "COGNITO_USER_POOL_ID=$COGNITO_USER_POOL_ID"
+        - echo "COGNITO_CLIENT_ID=$COGNITO_CLIENT_ID"
+        - echo "BEDROCK_ACCESS_KEY_ID is set:$([ -n \"$BEDROCK_ACCESS_KEY_ID\" ] && echo 'yes' || echo 'no')"
+        - echo "BEDROCK_SECRET_ACCESS_KEY is set:$([ -n \"$BEDROCK_SECRET_ACCESS_KEY\" ] && echo 'yes' || echo 'no')"
+        - echo "MSG91_AUTH_KEY is set:$([ -n \"$MSG91_AUTH_KEY\" ] && echo 'yes' || echo 'no')"
+        - echo "MSG91_TEMPLATE_OTP is set:$([ -n \"$MSG91_TEMPLATE_OTP\" ] && echo 'yes' || echo 'no')"
     build:
       commands:
         - npm run build
